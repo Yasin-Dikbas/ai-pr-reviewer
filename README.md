@@ -1,20 +1,42 @@
 # AI PR Reviewer
 
-GitHub pull request'lerini OpenAI ile otomatik analiz eden, bulguları PR'a yorum olarak bırakan bir kod inceleme asistanı.
+![Ruby on Rails](https://img.shields.io/badge/Rails-8-CC0000?logo=rubyonrails&logoColor=white)
+![React](https://img.shields.io/badge/React-19-0a0a0f?logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-0a0a0f?logo=postgresql&logoColor=4169E1)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-0a0a0f?logo=googlegemini&logoColor=8b5cf6)
+![Vite](https://img.shields.io/badge/Vite-8-0a0a0f?logo=vite&logoColor=646CFF)
+
+GitHub pull request'lerini Gemini ile otomatik analiz eden, bulguları PR'a yorum olarak bırakan bir kod inceleme asistanı.
+
+## Ekran Görüntüleri
+
+| Giriş | Repolarım |
+|---|---|
+| ![Giriş ekranı](docs/screenshots/login.png) | ![Dashboard](docs/screenshots/dashboard.png) |
+
+| Pull Request listesi | AI analiz sonucu |
+|---|---|
+| ![PR listesi](docs/screenshots/pull-requests.png) | ![Analiz sonucu](docs/screenshots/review-detail.png) |
+
+### Demo
+
+https://github.com/user-attachments/assets/REPLACE_WITH_UPLOADED_VIDEO_ID
+
+> GitHub, repo içindeki `.mp4` dosyalarını README'de doğrudan oynatmaz — video GitHub'ın kendi medya sunucusuna yüklenmiş olmalı. `docs/screenshots/demo.mp4` zaten hazır; yukarıdaki satırı silip bu dosyayı **GitHub.com'da bu reponun bir Issue'sine veya PR açıklamasına sürükle-bırak** ile yükle, GitHub sana `https://github.com/user-attachments/assets/...` linkini verecek — o linki bu satırın yerine yapıştır (Issue'yu kaydetmene gerek yok, link kalıcı olur). Video 50MB'ı aştığı için repoya commit edilmesi önerilmez; `docs/screenshots/demo.mp4` dosyasını yükledikten sonra repodan silebilirsin.
 
 ## Mimari
 
-- **backend/** — Ruby on Rails 8 API (PostgreSQL, Solid Queue ile background job, GitHub OAuth, Octokit, OpenAI)
+- **backend/** — Ruby on Rails 8 API (PostgreSQL, Solid Queue ile background job, GitHub OAuth, Octokit, Gemini)
 - **frontend/** — React (Vite) SPA; GitHub ile giriş, repo bağlama, PR listesi ve AI inceleme sonuçları
 
-Akış: Kullanıcı GitHub ile giriş yapar → bir repo bağlar (otomatik webhook kurulur) → yeni PR açıldığında ya da "AI ile Analiz Et" butonuna basıldığında backend diff'i çeker → OpenAI'a gönderir → sonucu veritabanına kaydeder ve PR'a yorum olarak ekler.
+Akış: Kullanıcı GitHub ile giriş yapar → bir repo bağlar (otomatik webhook kurulur) → yeni PR açıldığında ya da "AI ile Analiz Et" butonuna basıldığında backend diff'i çeker → Gemini'ye gönderir → sonucu veritabanına kaydeder ve PR'a yorum olarak ekler.
 
 ## Gereksinimler
 
 - Ruby 3.4+, Rails 8+, PostgreSQL (zaten kurulu)
 - Node.js 20+
 - Bir GitHub hesabı (OAuth App oluşturmak için)
-- Bir OpenAI API key
+- Bir Gemini API key (ücretsiz, kredi kartı gerekmez: https://aistudio.google.com/apikey)
 
 ## 1. GitHub OAuth App Oluşturma
 
@@ -34,7 +56,7 @@ Akış: Kullanıcı GitHub ile giriş yapar → bir repo bağlar (otomatik webho
 GITHUB_CLIENT_ID=<yukarıdaki Client ID>
 GITHUB_CLIENT_SECRET=<yukarıdaki Client Secret>
 GITHUB_WEBHOOK_SECRET=<rastgele bir string, örn: openssl rand -hex 20>
-OPENAI_API_KEY=<OpenAI API key>
+GEMINI_API_KEY=<Gemini API key, https://aistudio.google.com/apikey adresinden ücretsiz alınır>
 ```
 
 `JWT_SECRET` ve `FRONTEND_URL` otomatik dolduruldu, dokunmana gerek yok.
@@ -83,7 +105,7 @@ Webhook kurulmasa da uygulama çalışır: PR listesinde her repo için **"AI il
 |---|---|
 | Backend | Ruby on Rails 8 (API-only), PostgreSQL, Solid Queue |
 | Auth | GitHub OAuth (OmniAuth) + JWT (SPA için stateless auth) |
-| AI | OpenAI API (`gpt-4o-mini`, `ruby-openai` gem) |
+| AI | Google Gemini API (`gemini-2.5-flash`, ücretsiz katman) |
 | GitHub entegrasyonu | Octokit (PR listesi, diff, yorum, webhook kurulumu) |
 | Frontend | React 19 + Vite, React Router, Axios |
 

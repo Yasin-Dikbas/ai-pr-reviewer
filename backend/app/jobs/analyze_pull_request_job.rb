@@ -15,7 +15,7 @@ class AnalyzePullRequestJob < ApplicationJob
       status: :completed,
       summary: result["summary"],
       findings: result["findings"],
-      model_used: ENV.fetch("OPENAI_MODEL", "gpt-4o-mini")
+      model_used: ENV.fetch("GEMINI_MODEL", "gemini-2.5-flash")
     )
 
     comment = build_comment(result)

@@ -47,9 +47,6 @@ gem "jwt", "~> 2.9"
 # GitHub REST API client (fetch PRs, diffs, post comments)
 gem "octokit", "~> 9.0"
 
-# OpenAI API client for diff analysis
-gem "ruby-openai", "~> 7.3"
-
 group :development, :test do
   # Loads environment variables from .env (API keys, OAuth secrets)
   gem "dotenv-rails"
