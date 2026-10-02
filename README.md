@@ -20,9 +20,9 @@ GitHub pull request'lerini Gemini ile otomatik analiz eden, bulguları PR'a yoru
 
 ### Demo
 
-https://github.com/user-attachments/assets/REPLACE_WITH_UPLOADED_VIDEO_ID
+https://github.com/Yasin-Dikbas/ai-pr-reviewer/releases/download/demo-assets/demo.mp4
 
-> GitHub, repo içindeki `.mp4` dosyalarını README'de doğrudan oynatmaz — video GitHub'ın kendi medya sunucusuna yüklenmiş olmalı. `docs/screenshots/demo.mp4` zaten hazır; yukarıdaki satırı silip bu dosyayı **GitHub.com'da bu reponun bir Issue'sine veya PR açıklamasına sürükle-bırak** ile yükle, GitHub sana `https://github.com/user-attachments/assets/...` linkini verecek — o linki bu satırın yerine yapıştır (Issue'yu kaydetmene gerek yok, link kalıcı olur). Video 50MB'ı aştığı için repoya commit edilmesi önerilmez; `docs/screenshots/demo.mp4` dosyasını yükledikten sonra repodan silebilirsin.
+> Video, repo boyutunu şişirmemek için koda commit edilmedi; ayrı bir [GitHub Release](https://github.com/Yasin-Dikbas/ai-pr-reviewer/releases/tag/demo-assets) üzerinden barındırılıyor. Üstteki linke tıklayınca GitHub'ın video oynatıcısında doğrudan izlenebilir.
 
 ## Mimari
 
