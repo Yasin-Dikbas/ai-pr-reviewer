@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_02_100201) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_02_112927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "pull_requests", force: :cascade do |t|
     t.bigint "repository_id", null: false
-    t.integer "github_pr_id"
+    t.bigint "github_pr_id"
     t.integer "number"
     t.string "title"
     t.string "state"
@@ -31,7 +31,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_02_100201) do
 
   create_table "repositories", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "github_repo_id"
+    t.bigint "github_repo_id"
     t.string "full_name"
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_02_100201) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "github_id"
+    t.bigint "github_id"
     t.string "github_username"
     t.string "name"
     t.string "email"

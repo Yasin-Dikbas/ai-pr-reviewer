@@ -19,5 +19,12 @@ export default function AuthCallback() {
       .catch(() => navigate('/login'))
   }, [])
 
-  return <div className="centered-page">Giriş yapılıyor...</div>
+  return (
+    <div className="centered-page">
+      <div className="loading-row">
+        <div className="spinner" />
+        Giriş yapılıyor...
+      </div>
+    </div>
+  )
 }
